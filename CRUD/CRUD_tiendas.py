@@ -29,3 +29,25 @@ def serie_cod_comercio(codigo):
     except Exception as e:  # Captura la excepción y muestra el error
         print(f"Error al consultar serie de tienda: {e}")
         return 0
+
+def update_tienda(datos):
+    try:
+        conn = conexion_ddbb()
+        cursor = conn.cursor()
+        insert_query = """
+                        update TIENDAS set 
+                            COD_COMERCIO = ?,
+                            COD_DINERS = ?,
+                            NOMBRE = ?,
+                            BANCO = ?,
+                            MARCA = ?
+                        where SERIE_TIENDA = ?
+                        """
+        cursor.execute(insert_query,datos)
+        
+        cursor.commit()
+    except Exception as e:  # Captura la excepción y muestra el error
+        print(f"Error al actualiza Tienda: {e}")
+    finally:
+        cursor.close()
+        conn.close()

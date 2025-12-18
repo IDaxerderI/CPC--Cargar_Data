@@ -14,6 +14,7 @@ from cargas.cargar_tc_rc import cargar_recargo_cambio, actualizar_recargo_cambio
 from cargas.cargar_personal import cargar_personal, actualizar_personal
 from cargas.cargar_peya import cargar_peya
 from cargas.cargar_tarjetas import cargar_tarjetas_izipay
+from cargas.cargar_tiendas import actualizar_tiendas
 
 from funciones.funciones import *
 
@@ -123,7 +124,6 @@ def cargar():
         cargar_tarjetas_izipay(V_archivo.get())
     
     elif opcion == "Tiendas":
-        #cargar_tiendas(V_archivo.get())
         pass
     
     elif opcion == "Personal":
@@ -153,7 +153,7 @@ def actualizar():
         pass
     
     elif opcion == "Tiendas":
-        pass
+        actualizar_tiendas(V_archivo.get())
     
     elif opcion == "Personal":
         actualizar_personal(V_archivo.get())
@@ -242,7 +242,7 @@ def habilitar_fecha(event):
 E_Ep = ttk.Combobox(
     state="readonly",
     values=[
-            #"Tiendas",
+            "Tiendas",
             "Personal",
             "Cargar RC - TC",
             "Data Miner",
