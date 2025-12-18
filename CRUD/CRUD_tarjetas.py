@@ -33,3 +33,26 @@ def registar_tarjetas(datos):
     finally:
         cursor.close()
         conn.close()
+
+def registrar_culqui(datos):
+    try:
+        conn = conexion_ddbb()
+        cursor = conn.cursor()
+        insert_query  = """
+            insert into CULQUI_TARJETAS (
+                ID_CULQUI,PRODUCTO,ID_VENTA,MARCA,N_TARJETA,ULT_DIG,MONEDA,FECHA_TRANSACCION,HORA_TRANSACCION,PAIS,BANCO,
+                PAIS_BANCO,COD_REFERENCIA,COD_AUTORIZACION,ID_TERMINAL,DEVOLUCION,PRE_AUTO,MONTO_VENTA,VENTA_FINAL,COMS_EMISOR,
+                COMS_CULQUI,IGV_EMISOR,IGV_CULQUI,MONTO_APROX_ABONO,ID_TRANSACCOIN,SERIE_TERMINAL,PROPINA,ESTADO,COD_RESPUESTA,
+                MEN_COMERCIO,MEN_USUARIO,MODO_PAGO,MARCA_QR,TIPO_PAGO,METADATA,ID_COMERCIO,LOTE,REF_LOTE,DESCRIPCION,TIPO_TOKEN,FECHA_ABONO,ID_ABONO
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        """
+        cursor.execute(insert_query,datos)
+        
+        cursor.commit()
+        return False
+    except Exception as e:  # Captura la excepción y muestra el error
+        print(f"Error al registrar tarjetas --> {e}")
+        return True
+    finally:
+        cursor.close()
+        conn.close()

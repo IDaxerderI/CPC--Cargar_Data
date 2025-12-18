@@ -2,7 +2,7 @@ import openpyxl
 import sys, os
 
 from CRUD.CRUD_tiendas import serie_cod_comercio
-from CRUD.CRUD_tarjetas import registar_tarjetas
+from CRUD.CRUD_tarjetas import registar_tarjetas,registrar_culqui
 
 from funciones.notas_temporal import crear_y_abrir_txt
 
@@ -89,7 +89,7 @@ def cargar_tarjetas_culqui(ruta_completa):
         id = str(ws.cell(row = fila,column = 24).value)
         producto = str(ws.cell(row = fila,column = 3).value)
         if id != "None":
-            serie = serie_cod_comercio(str(ws.cell(row = fila,column = 2).value))
+            serie = serie_cod_comercio(str(ws.cell(row = fila,column = 35).value))
             try:
                 id = serie + id + fecha + hora + producto
             except Exception as error:
@@ -100,7 +100,7 @@ def cargar_tarjetas_culqui(ruta_completa):
                 print(f"fila:-{hora}")
                 print(f"Error: {error}")
             datos.insert(0,id)
-            reg = registar_tarjetas(datos)
+            reg = registrar_culqui(datos)
             datos.clear()
             
             if reg:
